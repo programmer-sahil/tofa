@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Zameema Ghousia 💖</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            text-align: center;
+            user-select: none;
+        }
+
+        /* Floating background hearts */
+        .bg-heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 30px;
+            animation: floatUp 7s linear infinite;
+            bottom: -50px;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 45px 35px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            max-width: 440px;
+            width: 88%;
+            position: relative;
+            z-index: 10;
+            transition: all 0.4s ease;
+        }
+
+        h1 {
+            color: #d63031;
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        p.subtitle {
+            color: #2d3436;
+            font-size: 20px;
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            min-height: 60px;
+        }
+
+        button {
+            padding: 14px 34px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.4);
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(0, 184, 148, 0.6);
+        }
+
+        #noBtn {
+            background: linear-gradient(135deg, #ff7675, #d63031);
+            color: white;
+            box-shadow: 0 6px 20px rgba(214, 48, 49, 0.3);
+            transition: top 0.2s ease, left 0.2s ease;
+        }
+
+        /* Celebration Screen Styles */
+        .hidden {
+            display: none !important;
+        }
+
+        .celebration-emoji {
+            font-size: 64px;
+            margin-bottom: 15px;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+
+        .celebration h2 {
+            color: #e84393;
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .celebration p {
+            font-size: 20px;
+            color: #2d3436;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .signature {
+            margin-top: 25px;
+            font-style: italic;
+            color: #636e72;
+            font-size: 16px;
+            border-top: 1px solid #dfe6e9;
+            padding-top: 15px;
+        }
+
+        .signature strong {
+            color: #d63031;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Decorative Floating Hearts -->
+    <div class="bg-heart" style="left: 10%; animation-duration: 6s;">💖</div>
+    <div class="bg-heart" style="left: 25%; animation-duration: 8s; animation-delay: 1s;">💕</div>
+    <div class="bg-heart" style="left: 50%; animation-duration: 5s; animation-delay: 2s;">💘</div>
+    <div class="bg-heart" style="left: 75%; animation-duration: 7s; animation-delay: 0.5s;">💓</div>
+    <div class="bg-heart" style="left: 88%; animation-duration: 6s; animation-delay: 3s;">💞</div>
+
+    <div class="card" id="questionCard">
+        <h1>Hey Zameema Ghousia! 💕</h1>
+        <p class="subtitle">Will you love me forever?</p>
+        <div class="button-group">
+            <button id="yesBtn">Yes! 💖</button>
+            <button id="noBtn">No 🙈</button>
+        </div>
+    </div>
+
+    <div class="card hidden celebration" id="celebrationCard">
+        <div class="celebration-emoji">😘💋</div>
+        <h2>I Knew It! 🎉</h2>
+        <p>You can't escape my love! <br>Now come here and give me kisses immediately! 🥰</p>
+        <div class="signature">Forever & always,<br><strong>SK SAHIL</strong></div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const questionCard = document.getElementById('questionCard');
+        const celebrationCard = document.getElementById('celebrationCard');
+
+        // Function to relocate the 'No' button randomly across the entire viewport
+        function dodgeButton() {
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+            
+            // Keep a padding margin from screen edges so it stays visible
+            const margin = 20;
+            const maxX = window.innerWidth - btnWidth - margin;
+            const maxY = window.innerHeight - btnHeight - margin;
+
+            const randomX = Math.max(margin, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(margin, Math.floor(Math.random() * maxY));
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            noBtn.style.zIndex = '1000';
+        }
+
+        // Trigger dodge on desktop mouse hover and mobile touch attempts
+        noBtn.addEventListener('mouseover', dodgeButton);
+        noBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Prevents tapping the button on touchscreen devices
+            dodgeButton();
+        });
+        noBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            dodgeButton();
+        });
+
+        // Show the celebration card when 'Yes' is clicked
+        yesBtn.addEventListener('click', function() {
+            questionCard.classList.add('hidden');
+            celebrationCard.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
